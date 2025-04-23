@@ -44,4 +44,7 @@ jobs:
 
       - name: Deploy Container App
         run: |
-          az containerapp up --name $SERVICE_NAME --image $IMAGE_BASE_NAME --resource-group $RESOURCE_GROUP --environment $ENVIRONMENT_NAME  --env-vars SERVICEBUS_CONNECTION_STRING=${{secrets.SERVICE_BUS_CONNECTION_STRING}} SERVICE_BUS_QUEUE_NAME=pickage --ingress external --target-port 8080
+          az containerapp up --name $SERVICE_NAME --image $IMAGE_BASE_NAME \
+          --resource-group $RESOURCE_GROUP --environment $ENVIRONMENT_NAME  \
+          --env-vars SERVICEBUS_CONNECTION_STRING=${{secrets.SERVICE_BUS_CONNECTION_STRING}} --env-vars SERVICE_BUS_QUEUE_NAME=pickage \
+          --ingress external --target-port 8080
