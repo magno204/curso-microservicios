@@ -1,0 +1,6 @@
+@GetAdultById_HostAddress = http://localhost:5234
+
+GET {{GetAdultById_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

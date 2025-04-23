@@ -1,0 +1,6 @@
+@AddChild_HostAddress = http://localhost:5139
+
+GET {{AddChild_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

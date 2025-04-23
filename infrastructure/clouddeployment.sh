@@ -16,8 +16,7 @@ az servicebus queue create --resource-group $RESOURCE_GROUP_NAME --namespace-nam
 az servicebus topic create --resource-group $RESOURCE_GROUP_NAME --namespace-name $SB_NAMESPACE_NAME --name "adultstopic"
 az servicebus topic subscription create --resource-group $RESOURCE_GROUP_NAME --namespace-name $SB_NAMESPACE_NAME --topic-name "adultstopic" --name S1
 
-
 az servicebus topic create --resource-group $RESOURCE_GROUP_NAME --namespace-name $SB_NAMESPACE_NAME --name "childrentopic"
 az servicebus topic subscription create --resource-group $RESOURCE_GROUP_NAME --namespace-name $SB_NAMESPACE_NAME --topic-name "childrentopic" --name S1
 
-az containerapp environment create --name $CONTAINER_APPS_ENV_NAME --resource-group $RESOURCE_GROUP_NAME --location $LOCATION --internal-only false
+az containerapp env create --name $CONTAINER_APPS_ENV_NAME --resource-group $RESOURCE_GROUP_NAME --location $LOCATION --internal-only false

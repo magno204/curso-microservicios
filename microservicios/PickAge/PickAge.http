@@ -1,0 +1,6 @@
+@PickAge_HostAddress = http://localhost:5056
+
+GET {{PickAge_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
