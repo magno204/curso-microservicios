@@ -1,22 +1,22 @@
-name: AddMember deployment
+name: Add Child deployment
 
 on:
   push:
     branches: [ "main" ]
 
 env:
-  SERVICE_NAME: addmember
+  SERVICE_NAME: addchild
   RESOURCE_GROUP: rg-microservicios
-  IMAGE_BASE_NAME: aminespinoza/addmember:latest
+  IMAGE_BASE_NAME: aminespinoza/addchild:latest
   ENVIRONMENT_NAME: env-microservicios
 
 jobs:
   AddMember:
-    name: Add Member deployment
+    name: Add Child deployment
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ${{ github.workspace }}/microservicios/AddMember
+        working-directory: ${{ github.workspace }}/microservicios/AddChild
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
@@ -46,5 +46,5 @@ jobs:
         run: |
           az containerapp up --name $SERVICE_NAME --image $IMAGE_BASE_NAME \
           --resource-group $RESOURCE_GROUP --environment $ENVIRONMENT_NAME  \
-          --env-vars SERVICEBUS_CONNECTION_STRING="${{secrets.SERVICE_BUS_CONNECTION_STRING}}" SERVICE_BUS_QUEUE_NAME=pickage \
-          --ingress external --target-port 8080
+          --env-vars SERVICEBUS_CONNECTION_STRING="${{secrets.SERVICE_BUS_CONNECTION_STRING}}" SERVICE_BUS_TOPIC_NAME=childrentopic 
+          SQL_CONNECTION_STRING="${{secrets.SQL_CONNECTION_STRING}}

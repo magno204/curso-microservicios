@@ -1,22 +1,22 @@
-name: AddMember deployment
+name: PickAge deployment
 
 on:
   push:
     branches: [ "main" ]
 
 env:
-  SERVICE_NAME: addmember
+  SERVICE_NAME: pickage
   RESOURCE_GROUP: rg-microservicios
-  IMAGE_BASE_NAME: aminespinoza/addmember:latest
+  IMAGE_BASE_NAME: aminespinoza/pickage:latest
   ENVIRONMENT_NAME: env-microservicios
 
 jobs:
   AddMember:
-    name: Add Member deployment
+    name: Pick age deployment
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ${{ github.workspace }}/microservicios/AddMember
+        working-directory: ${{ github.workspace }}/microservicios/PickAge
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
@@ -46,5 +46,4 @@ jobs:
         run: |
           az containerapp up --name $SERVICE_NAME --image $IMAGE_BASE_NAME \
           --resource-group $RESOURCE_GROUP --environment $ENVIRONMENT_NAME  \
-          --env-vars SERVICEBUS_CONNECTION_STRING="${{secrets.SERVICE_BUS_CONNECTION_STRING}}" SERVICE_BUS_QUEUE_NAME=pickage \
-          --ingress external --target-port 8080
+          --env-vars SERVICEBUS_CONNECTION_STRING="${{secrets.SERVICE_BUS_CONNECTION_STRING}}" SERVICE_BUS_QUEUE_NAME=pickage
