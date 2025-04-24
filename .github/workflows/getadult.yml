@@ -5,18 +5,18 @@ on:
     branches: [ "main" ]
 
 env:
-  SERVICE_NAME: getadult
+  SERVICE_NAME: getadults
   RESOURCE_GROUP: rg-microservicios
-  IMAGE_BASE_NAME: aminespinoza/getadult:latest
+  IMAGE_BASE_NAME: aminespinoza/getadults:latest
   ENVIRONMENT_NAME: env-microservicios
 
 jobs:
   AddMember:
-    name: Get Adult deployment
+    name: Get Adults deployment
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ${{ github.workspace }}/microservicios/GetAdult
+        working-directory: ${{ github.workspace }}/microservicios/GetAdults
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
