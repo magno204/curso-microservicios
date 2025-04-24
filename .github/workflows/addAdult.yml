@@ -1,4 +1,4 @@
-name: AddAdult deployment
+name: Add Adult deployment
 
 on:
   push:
@@ -46,5 +46,5 @@ jobs:
         run: |
           az containerapp up --name $SERVICE_NAME --image $IMAGE_BASE_NAME \
           --resource-group $RESOURCE_GROUP --environment $ENVIRONMENT_NAME  \
-          --env-vars SERVICEBUS_CONNECTION_STRING="${{secrets.SERVICE_BUS_CONNECTION_STRING}}" SERVICE_BUS_TOPIC_NAME=adultstopic 
-          SQL_CONNECTION_STRING="${{secrets.SQL_CONNECTION_STRING}}
+          --env-vars SERVICEBUS_CONNECTION_STRING="${{secrets.SERVICE_BUS_CONNECTION_STRING}}" SERVICE_BUS_TOPIC_NAME="adultstopic" 
+          SQL_CONNECTION_STRING="${{secrets.SQL_CONNECTION_STRING}}"
