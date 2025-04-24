@@ -18,7 +18,7 @@ app.UseHttpsRedirection();
 app.MapPost("/addmember", (string name, string lastname, string birthyear) =>
 {
     var connectionString = builder.Configuration["ServiceBus:ConnectionString"] ?? Environment.GetEnvironmentVariable("SERVICEBUS_CONNECTION_STRING");
-    var queueName = builder.Configuration["ServiceBus:QueueName"] ?? Environment.GetEnvironmentVariable("SERVICE_BUS_QUEUE_NAME");;
+    var queueName = builder.Configuration["ServiceBus:QueueName"] ?? Environment.GetEnvironmentVariable("SERVICE_BUS_QUEUE_NAME");
     var serviceBus = new ServiceBus(connectionString, queueName);
     serviceBus.SendMessageAsync(name, lastname, birthyear).GetAwaiter().GetResult();
     return Results.Ok($"Miembro {name} agregado con éxito.");

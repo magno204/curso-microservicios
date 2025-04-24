@@ -1,5 +1,4 @@
-@AddMember_HostAddress = http://localhost:8080
-
+@AddMember_HostAddress = https://addmember.victoriousdesert-42c091c9.eastus2.azurecontainerapps.io/
 ### Request for children
 POST {{AddMember_HostAddress}}/addmember?name=Alejandra&lastname=Espinoza&birthyear=2020
 Content-Type: application/json

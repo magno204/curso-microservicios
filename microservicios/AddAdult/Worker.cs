@@ -18,8 +18,8 @@ namespace AddAdult
         public Worker(IConfiguration configuration, IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
-            _connectionString = configuration["ServiceBus:ConnectionString"];
-            _topicName = configuration["ServiceBus:TopicName"];
+            _connectionString = configuration["ServiceBus:ConnectionString"] ?? Environment.GetEnvironmentVariable("SERVICEBUS_CONNECTION_STRING");
+            _topicName = configuration["ServiceBus:TopicName"] ?? "adultstopic";
             _subscriptionName = "S1";
             _client = new ServiceBusClient(_connectionString);
 
