@@ -8,6 +8,7 @@ env:
   SERVICE_NAME: addadult
   RESOURCE_GROUP: rg-microservicios
   IMAGE_BASE_NAME: aminespinoza/addadult:latest
+  MY_IMAGE_BASE_NAME: magno204/addmember:latest
   ENVIRONMENT_NAME: env-microservicios
 
 jobs:
@@ -31,7 +32,7 @@ jobs:
       - name: Build Docker NET image
         run: | 
           docker build --platform linux -t $IMAGE_BASE_NAME .
-  
+          docker tag $IMAGE_BASE_NAME $MY_IMAGE_BASE_NAME
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
@@ -40,11 +41,11 @@ jobs:
 
       - name: Publish Docker NET image
         run: |
-          docker push $IMAGE_BASE_NAME
+          docker push $MY_IMAGE_BASE_NAME
 
       - name: Deploy Container App
         run: |
-          az containerapp up --name $SERVICE_NAME --image $IMAGE_BASE_NAME \
+          az containerapp up --name $SERVICE_NAME --image $MY_IMAGE_BASE_NAME \
           --resource-group $RESOURCE_GROUP --environment $ENVIRONMENT_NAME  \
           --env-vars SERVICEBUS_CONNECTION_STRING="${{secrets.SERVICE_BUS_CONNECTION_STRING}}" SERVICE_BUS_TOPIC_NAME="adultstopic" 
           SQL_CONNECTION_STRING="${{secrets.SQL_CONNECTION_STRING}}"
