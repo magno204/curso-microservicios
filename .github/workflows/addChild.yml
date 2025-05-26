@@ -8,6 +8,7 @@ env:
   SERVICE_NAME: addchild
   RESOURCE_GROUP: rg-microservicios
   IMAGE_BASE_NAME: aminespinoza/addchild:latest
+  MY_IMAGE_BASE_NAME: magno204/addchild:latest
   ENVIRONMENT_NAME: env-microservicios
 
 jobs:
@@ -40,11 +41,11 @@ jobs:
 
       - name: Publish Docker NET image
         run: |
-          docker push $IMAGE_BASE_NAME
+          docker push $MY_IMAGE_BASE_NAME
 
       - name: Deploy Container App
         run: |
-          az containerapp up --name $SERVICE_NAME --image $IMAGE_BASE_NAME \
+          az containerapp up --name $SERVICE_NAME --image $MY_IMAGE_BASE_NAME \
           --resource-group $RESOURCE_GROUP --environment $ENVIRONMENT_NAME  \
           --env-vars SERVICEBUS_CONNECTION_STRING="${{secrets.SERVICE_BUS_CONNECTION_STRING}}" SERVICE_BUS_TOPIC_NAME="childrentopic"
           SQL_CONNECTION_STRING="${{secrets.SQL_CONNECTION_STRING}}"
