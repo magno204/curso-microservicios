@@ -8,6 +8,7 @@ env:
   SERVICE_NAME: addmember
   RESOURCE_GROUP: rg-microservicios
   IMAGE_BASE_NAME: aminespinoza/addmember:latest
+  MY_IMAGE_BASE_NAME: magno204/addmember:latest
   ENVIRONMENT_NAME: env-microservicios
 
 jobs:
@@ -40,7 +41,7 @@ jobs:
 
       - name: Publish Docker NET image
         run: |
-          docker push $IMAGE_BASE_NAME
+          docker push $MY_IMAGE_BASE_NAME
 
       - name: Deploy Container App
         run: |
